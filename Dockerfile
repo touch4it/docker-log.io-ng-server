@@ -1,14 +1,7 @@
-FROM debian:jessie
+FROM node:6
 
-RUN apt-get update
-
-# Install curl and nodejs
-RUN apt-get -y install curl && curl -sL https://deb.nodesource.com/setup | bash -
-
-# Add requirements, add user and install log.io
-RUN apt-get -y install adduser make gcc g++ nodejs
 RUN adduser --shell /bin/false --gecos "" --disabled-password logio
-RUN export USER=logio; export HOME=/home/logio; npm install -g log.io --user "logio"
+RUN export USER=logio; export HOME=/home/logio; npm install -g log.io-ng --user "logio"
 
 # Configure Docker and add config files
 USER logio
